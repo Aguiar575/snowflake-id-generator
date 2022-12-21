@@ -5,6 +5,7 @@ namespace SnowFlakeFactory.Service;
 
 public class SnowFlakeIdService
 {
+    private ulong _lastTimestamp;
     private DateTime _epoch;
     private readonly IDateTimeProvider _dateTimeProvider;
 
@@ -23,12 +24,25 @@ public class SnowFlakeIdService
         }
     }
 
-    public SnowFlakeIdService(DateTime epoch, IDateTimeProvider dateTimeProvider) 
+    public SnowFlakeIdService(
+        DateTime epoch,
+        IDateTimeProvider dateTimeProvider,
+        ulong lastTimeStamp) 
     {
         _dateTimeProvider = dateTimeProvider;
+        _lastTimestamp = lastTimeStamp;
         Epoch = epoch;
     }
+    
+    public ulong GetNextMiliseconds() {
+        ulong actualTimestamp = GetTimestampInMilliseconds();
 
+        while (actualTimestamp <= _lastTimestamp)
+            actualTimestamp = GetTimestampInMilliseconds(); 
+
+        return actualTimestamp;
+    }
+        
     public ulong GetTimestampInMilliseconds() =>
             (ulong)(_dateTimeProvider.GetUtcNow() - Epoch).TotalMilliseconds;
     
