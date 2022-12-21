@@ -4,12 +4,12 @@ using SnowFlakeFactory.Interface;
 
 namespace SnowFlakeFactoryTests;
 
-public class SnowFlakeIdServiceTests
+public class GetNextMilliseconds
 {
     private const ulong _lastTimestamp = 89099756;
     Mock<IDateTimeProvider> _dateTimeProvider;
 
-    public SnowFlakeIdServiceTests() =>
+    public GetNextMilliseconds() =>
         _dateTimeProvider = new Mock<IDateTimeProvider>();
 
     [Fact]
@@ -24,7 +24,7 @@ public class SnowFlakeIdServiceTests
 
         var sut = new SnowFlakeIdService(epoch, _dateTimeProvider.Object, _lastTimestamp);
 
-        ulong result = sut.GetNextMiliseconds();
+        ulong result = sut.GetNextMilliseconds();
 
         Assert.Equal((ulong)89099757, result);
         _dateTimeProvider.Verify(e => e.GetUtcNow(), Times.Once());
@@ -50,7 +50,7 @@ public class SnowFlakeIdServiceTests
 
         var sut = new SnowFlakeIdService(epoch, _dateTimeProvider.Object, _lastTimestamp);
 
-        ulong result = sut.GetNextMiliseconds();
+        ulong result = sut.GetNextMilliseconds();
 
         Assert.Equal((ulong)89099757, result);
         _dateTimeProvider.Verify(e => e.GetUtcNow(), Times.Exactly(2));

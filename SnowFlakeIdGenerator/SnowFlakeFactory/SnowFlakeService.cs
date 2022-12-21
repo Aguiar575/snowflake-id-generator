@@ -34,7 +34,7 @@ public class SnowFlakeIdService
         Epoch = epoch;
     }
     
-    public ulong GetNextMiliseconds() {
+    public ulong GetNextMilliseconds() {
         ulong actualTimestamp = GetTimestampInMilliseconds();
 
         while (actualTimestamp <= _lastTimestamp)
