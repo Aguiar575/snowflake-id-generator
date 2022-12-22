@@ -2,14 +2,14 @@ using Moq;
 using SnowFlakeFactory.Service;
 using SnowFlakeFactory.Interface;
 
-namespace SnowFlakeFactoryTests;
+namespace SnowFlakeFactoryTests.SnowFlakeServiceTests;
 
-public class GetNextMilliseconds
+public class GetNextMillisecondsTests
 {
     private const ulong _lastTimestamp = 89099756;
     Mock<IDateTimeProvider> _dateTimeProvider;
 
-    public GetNextMilliseconds() =>
+    public GetNextMillisecondsTests() =>
         _dateTimeProvider = new Mock<IDateTimeProvider>();
 
     [Fact]
