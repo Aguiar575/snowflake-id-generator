@@ -24,7 +24,7 @@ public class GetTimestampInMillisecondsTests
 
         var snowFlakeModel = new SnowFlakeModel(_dateTimeProvider.Object, epoch);
 
-        var sut = new SnowFlakeIdService(snowFlakeModel, _dateTimeProvider.Object, 0UL);
+        var sut = new SnowFlakeIdService(snowFlakeModel, _dateTimeProvider.Object);
 
         ulong result = sut.GetTimestampInMilliseconds();
 

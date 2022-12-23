@@ -25,9 +25,9 @@ public class GetNextMillisecondsTests
 
         var snowFlakeModel = new SnowFlakeModel(_dateTimeProvider.Object, epoch);
 
-        var sut = new SnowFlakeIdService(snowFlakeModel, _dateTimeProvider.Object, _lastTimestamp);
+        var sut = new SnowFlakeIdService(snowFlakeModel, _dateTimeProvider.Object);
 
-        ulong result = sut.GetNextMilliseconds();
+        ulong result = sut.GetNextMilliseconds(_lastTimestamp);
 
         Assert.Equal((ulong)89099757, result);
         _dateTimeProvider.Verify(e => e.GetUtcNow(), Times.Once());
@@ -52,9 +52,9 @@ public class GetNextMillisecondsTests
 
         var snowFlakeModel = new SnowFlakeModel(_dateTimeProvider.Object, epoch);
 
-        var sut = new SnowFlakeIdService(snowFlakeModel, _dateTimeProvider.Object, _lastTimestamp);
+        var sut = new SnowFlakeIdService(snowFlakeModel, _dateTimeProvider.Object);
 
-        ulong result = sut.GetNextMilliseconds();
+        ulong result = sut.GetNextMilliseconds(_lastTimestamp);
 
         Assert.Equal((ulong)89099757, result);
         _dateTimeProvider.Verify(e => e.GetUtcNow(), Times.Exactly(2));

@@ -10,21 +10,18 @@ public class SnowFlakeIdService
     private SnowFlakeModel _snowFlakeModel;
     private readonly IDateTimeProvider _dateTimeProvider;
 
-
     public SnowFlakeIdService(
         SnowFlakeModel snowFlakeModel,
-        IDateTimeProvider dateTimeProvider,
-        ulong lastTimeStamp) 
+        IDateTimeProvider dateTimeProvider) 
     {
         _dateTimeProvider = dateTimeProvider;
-        _lastTimestamp = lastTimeStamp;
         _snowFlakeModel = snowFlakeModel;
     }
     
-    public ulong GetNextMilliseconds() {
+    public ulong GetNextMilliseconds(ulong lastTimestamp) {
         ulong actualTimestamp = GetTimestampInMilliseconds();
 
-        while (actualTimestamp <= _lastTimestamp)
+        while (actualTimestamp <= lastTimestamp)
             actualTimestamp = GetTimestampInMilliseconds(); 
 
         return actualTimestamp;
