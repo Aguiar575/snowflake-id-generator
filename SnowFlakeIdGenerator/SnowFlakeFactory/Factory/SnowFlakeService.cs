@@ -1,37 +1,24 @@
 ﻿
 using SnowFlakeFactory.Interface;
+using SnowFlakeFactory.Model;
 
 namespace SnowFlakeFactory.Service;
 
 public class SnowFlakeIdService
 {
     private ulong _lastTimestamp;
-    private DateTime _epoch;
+    private SnowFlakeModel _snowFlakeModel;
     private readonly IDateTimeProvider _dateTimeProvider;
 
-    public DateTime Epoch 
-    { 
-        get => _epoch; 
-        private set {
-            if(value > _dateTimeProvider.GetToday()) {
-                throw new ArgumentOutOfRangeException(
-                    nameof(value),
-                    value,
-                    "Epoch date must not be in the future.");
-            }
-
-            _epoch = value;
-        }
-    }
 
     public SnowFlakeIdService(
-        DateTime epoch,
+        SnowFlakeModel snowFlakeModel,
         IDateTimeProvider dateTimeProvider,
         ulong lastTimeStamp) 
     {
         _dateTimeProvider = dateTimeProvider;
         _lastTimestamp = lastTimeStamp;
-        Epoch = epoch;
+        _snowFlakeModel = snowFlakeModel;
     }
     
     public ulong GetNextMilliseconds() {
@@ -44,6 +31,6 @@ public class SnowFlakeIdService
     }
         
     public ulong GetTimestampInMilliseconds() =>
-            (ulong)(_dateTimeProvider.GetUtcNow() - Epoch).TotalMilliseconds;
+            (ulong)(_dateTimeProvider.GetUtcNow() - _snowFlakeModel.Epoch).TotalMilliseconds;
     
 }

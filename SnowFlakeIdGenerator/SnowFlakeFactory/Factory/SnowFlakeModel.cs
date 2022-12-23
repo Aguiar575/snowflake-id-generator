@@ -72,4 +72,12 @@ public class SnowFlakeModel
         DatacenterIdBits = datacenterIdBits;
         WorkerIdBits = workerIdBits;
     }
+
+    public SnowFlakeModel(
+        IDateTimeProvider dateTimeProvider,
+        DateTime epoch) 
+    {
+        _dateTimeProvider = dateTimeProvider;
+        Epoch = epoch;
+    }
 }

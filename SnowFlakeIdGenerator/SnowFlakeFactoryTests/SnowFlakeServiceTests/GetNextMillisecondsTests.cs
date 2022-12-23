@@ -1,6 +1,7 @@
 using Moq;
 using SnowFlakeFactory.Service;
 using SnowFlakeFactory.Interface;
+using SnowFlakeFactory.Model;
 
 namespace SnowFlakeFactoryTests.SnowFlakeServiceTests;
 
@@ -9,7 +10,7 @@ public class GetNextMillisecondsTests
     private const ulong _lastTimestamp = 89099756;
     Mock<IDateTimeProvider> _dateTimeProvider;
 
-    public GetNextMillisecondsTests() =>
+    public GetNextMillisecondsTests() => 
         _dateTimeProvider = new Mock<IDateTimeProvider>();
 
     [Fact]
@@ -22,7 +23,9 @@ public class GetNextMillisecondsTests
         _dateTimeProvider.Setup(e => e.GetToday()).Returns(getToday);
         _dateTimeProvider.Setup(e => e.GetUtcNow()).Returns(getUtcNow);
 
-        var sut = new SnowFlakeIdService(epoch, _dateTimeProvider.Object, _lastTimestamp);
+        var snowFlakeModel = new SnowFlakeModel(_dateTimeProvider.Object, epoch);
+
+        var sut = new SnowFlakeIdService(snowFlakeModel, _dateTimeProvider.Object, _lastTimestamp);
 
         ulong result = sut.GetNextMilliseconds();
 
@@ -47,8 +50,9 @@ public class GetNextMillisecondsTests
             .Setup(e => e.GetUtcNow())
             .Returns(new DateTime(2012, 12, 20, 21, 15, 30, 420));
 
+        var snowFlakeModel = new SnowFlakeModel(_dateTimeProvider.Object, epoch);
 
-        var sut = new SnowFlakeIdService(epoch, _dateTimeProvider.Object, _lastTimestamp);
+        var sut = new SnowFlakeIdService(snowFlakeModel, _dateTimeProvider.Object, _lastTimestamp);
 
         ulong result = sut.GetNextMilliseconds();
 

@@ -1,6 +1,7 @@
 using Moq;
 using SnowFlakeFactory.Service;
 using SnowFlakeFactory.Interface;
+using SnowFlakeFactory.Model;
 
 namespace SnowFlakeFactoryTests.SnowFlakeServiceTests;
 
@@ -17,12 +18,13 @@ public class GetTimestampInMillisecondsTests
         DateTime getUtcNow = new DateTime(2012, 12, 20, 21, 15, 30, 420);
         DateTime getToday = new DateTime(2012, 12, 20, 21, 15, 30, 420);
         DateTime epoch = new DateTime(2012, 12, 19, 20, 30, 30, 663);
-
          
         _dateTimeProvider.Setup(e => e.GetUtcNow()).Returns(getUtcNow);
         _dateTimeProvider.Setup(e => e.GetToday()).Returns(getToday);
 
-        var sut = new SnowFlakeIdService(epoch, _dateTimeProvider.Object, 0UL);
+        var snowFlakeModel = new SnowFlakeModel(_dateTimeProvider.Object, epoch);
+
+        var sut = new SnowFlakeIdService(snowFlakeModel, _dateTimeProvider.Object, 0UL);
 
         ulong result = sut.GetTimestampInMilliseconds();
 
