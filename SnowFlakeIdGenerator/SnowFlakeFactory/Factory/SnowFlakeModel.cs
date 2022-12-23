@@ -4,7 +4,7 @@ namespace SnowFlakeFactory.Model;
 
 public class SnowFlakeModel
 {
-    private const int _maxFreeBits = 10;
+    private const int MAX_FREE_BITS = 10;
     private int _datacenterIdBits = 4;
     private int _workerIdBits = 6;
     private DateTime _epoch;
