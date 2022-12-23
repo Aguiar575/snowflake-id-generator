@@ -63,18 +63,6 @@ public class SnowFlakeModel
 
     public SnowFlakeModel(
         IDateTimeProvider dateTimeProvider,
-        DateTime epoch,
-        int datacenterIdBits,
-        int workerIdBits) 
-    {
-        _dateTimeProvider = dateTimeProvider;
-        Epoch = epoch;
-        DatacenterIdBits = datacenterIdBits;
-        WorkerIdBits = workerIdBits;
-    }
-
-    public SnowFlakeModel(
-        IDateTimeProvider dateTimeProvider,
         DateTime epoch) 
     {
         _dateTimeProvider = dateTimeProvider;
