@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using SnowFlakeFactory.Interface;
+using SnowFlakeFactory.Service;
 
 namespace SnowFlakeFactory.Model;
 
@@ -62,6 +63,9 @@ public class SnowFlakeModel
                 _workerIdBits = value;
             }
         }
+
+    public SnowFlakeModel() =>
+        _dateTimeProvider = new DateTimeProvider();
 
     public SnowFlakeModel(IDateTimeProvider dateTimeProvider) =>
         _dateTimeProvider = dateTimeProvider;

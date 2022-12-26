@@ -21,6 +21,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapGet("/", () => "Hello World!");
+app.MapPost("/snowflake-id", (SnowFlakeIdService snowflakeIdService) => 
+    Results.Ok(new SnowflakeId(snowflakeIdService.CreateSnowflakeId())))
+    .WithName("SnowflakeId")
+    .Produces(StatusCodes.Status200OK, typeof(SnowflakeId));
 
 app.Run();
+
+internal record class SnowflakeId(ulong id);
