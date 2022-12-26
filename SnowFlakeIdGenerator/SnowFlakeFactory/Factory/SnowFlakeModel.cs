@@ -18,7 +18,7 @@ public class SnowFlakeModel
     public DateTime Epoch 
     { 
         get => _epoch; 
-        private set {
+        set {
             if(value > _dateTimeProvider.GetToday()) {
                 throw new ArgumentOutOfRangeException(
                     nameof(value),
@@ -63,13 +63,8 @@ public class SnowFlakeModel
             }
         }
 
-    public SnowFlakeModel(
-        IDateTimeProvider dateTimeProvider,
-        DateTime epoch) 
-    {
+    public SnowFlakeModel(IDateTimeProvider dateTimeProvider) =>
         _dateTimeProvider = dateTimeProvider;
-        Epoch = epoch;
-    }
 
     public void Validate()
     {

@@ -22,7 +22,7 @@ public class GetTimestampInMillisecondsTests
         _dateTimeProvider.Setup(e => e.GetUtcNow()).Returns(getUtcNow);
         _dateTimeProvider.Setup(e => e.GetToday()).Returns(getToday);
 
-        var snowFlakeModel = new SnowFlakeModel(_dateTimeProvider.Object, epoch);
+        var snowFlakeModel = new SnowFlakeModel(_dateTimeProvider.Object){Epoch = epoch};
         var sut = new SnowFlakeIdService(snowFlakeModel, _dateTimeProvider.Object);
 
         ulong result = sut.GetTimestampInMilliseconds();

@@ -23,7 +23,7 @@ public class CreateSnowflakeIdTests
                                                                         ulong expectedSnowflakeId)
     {
         _dateTimeProvider.Setup(e => e.GetUtcNow()).Returns(DateTime.Parse(now));
-        var model = new SnowFlakeModel(new DateTimeProvider(), DefaultEpoch);
+        var model = new SnowFlakeModel(new DateTimeProvider()) { Epoch = DefaultEpoch };
         var snowflakeService = new SnowFlakeIdService(model, _dateTimeProvider.Object);
 
         var snowflakeId = snowflakeService.CreateSnowflakeId();
@@ -36,12 +36,14 @@ public class CreateSnowflakeIdTests
     {
         _dateTimeProvider.Setup(e => e.GetUtcNow())
                          .Returns(new DateTime(2000, 1, 1));
-        var modelOne = new SnowFlakeModel(new DateTimeProvider(), DefaultEpoch)
+        var modelOne = new SnowFlakeModel(new DateTimeProvider())
         {
+            Epoch = DefaultEpoch,
             DatacenterId = 1
         };
-        var modelTwo = new SnowFlakeModel(new DateTimeProvider(), DefaultEpoch)
+        var modelTwo = new SnowFlakeModel(new DateTimeProvider())
         {
+            Epoch = DefaultEpoch,
             DatacenterId = 2
         };
         var snowflakeService1 = new SnowFlakeIdService(modelOne, _dateTimeProvider.Object);
@@ -57,12 +59,14 @@ public class CreateSnowflakeIdTests
     {
         _dateTimeProvider.Setup(e => e.GetUtcNow())
                          .Returns(new DateTime(2000, 1, 1));
-        var modelOne = new SnowFlakeModel(new DateTimeProvider(), DefaultEpoch)
+        var modelOne = new SnowFlakeModel(new DateTimeProvider())
         {
+            Epoch = DefaultEpoch,
             WorkerId = 1
         };
-        var modelTwo = new SnowFlakeModel(new DateTimeProvider(), DefaultEpoch)
+        var modelTwo = new SnowFlakeModel(new DateTimeProvider())
         {
+            Epoch = DefaultEpoch,
             WorkerId = 2
         };
         var snowflakeService1 = new SnowFlakeIdService(modelOne, _dateTimeProvider.Object);
@@ -76,7 +80,7 @@ public class CreateSnowflakeIdTests
     [Fact]
     public void CreateSnowflakeId_Default_Should_Not_Generate_Zero_Or_Negative_Ids()
     {
-        var model = new SnowFlakeModel(new DateTimeProvider(), DefaultEpoch);
+        var model = new SnowFlakeModel(new DateTimeProvider()) { Epoch = DefaultEpoch };
         var snowflakeService = new SnowFlakeIdService(model, new DateTimeProvider());
         for (var i = 0; i < 1_000_000; i++)
         {
@@ -88,7 +92,7 @@ public class CreateSnowflakeIdTests
     [Fact]
     public void CreateSnowflakeId_Default_Should_Generate_Sequential_Ids()
     {
-        var model = new SnowFlakeModel(new DateTimeProvider(), DefaultEpoch);
+        var model = new SnowFlakeModel(new DateTimeProvider()) { Epoch = DefaultEpoch };
         var snowflakeService = new SnowFlakeIdService(model, new DateTimeProvider());
 
         ulong? snowflakeId = null;
@@ -117,7 +121,7 @@ public class CreateSnowflakeIdTests
             .Setup(e => e.GetUtcNow())
             .Returns(new DateTime(2000, 1, 1).AddMilliseconds(-1));
 
-        var model = new SnowFlakeModel(new DateTimeProvider(), DefaultEpoch);
+        var model = new SnowFlakeModel(new DateTimeProvider()) { Epoch = DefaultEpoch };
         var snowflakeService = new SnowFlakeIdService(model, _dateTimeProvider.Object);
         snowflakeService.CreateSnowflakeId();
 
