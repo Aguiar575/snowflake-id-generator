@@ -1,14 +1,16 @@
-﻿using SnowFlakeFactory.Interface;
+﻿using System.ComponentModel.DataAnnotations;
+using SnowFlakeFactory.Interface;
 
 namespace SnowFlakeFactory.Model;
 
 public class SnowFlakeModel
 {
-    private const int MAX_FREE_BITS = 10;
     private int _datacenterIdBits = 4;
     private int _workerIdBits = 6;
     private DateTime _epoch;
     private readonly IDateTimeProvider _dateTimeProvider;
+    private ulong _maxDatacenterId => (ulong)(-1L ^ (-1L << this.DatacenterIdBits));
+    private ulong _maxWorkerId => (ulong)(-1L ^ (-1L << this.WorkerIdBits));
 
     public ulong WorkerId { get; init; } = 0UL;
     public ulong DatacenterId { get; init; } = 0UL;
@@ -67,5 +69,16 @@ public class SnowFlakeModel
     {
         _dateTimeProvider = dateTimeProvider;
         Epoch = epoch;
+    }
+
+    public void Validate()
+    {
+        if (this.DatacenterId > _maxDatacenterId)
+            throw new ValidationException(
+                $"Datacenter ID '{this.DatacenterId}' can't be greater than {_maxDatacenterId}.");
+                
+        if (this.WorkerId > _maxWorkerId)
+            throw new ValidationException(
+                $"Worker ID '{this.WorkerId}' can't be greater than {_maxWorkerId}.");
     }
 }

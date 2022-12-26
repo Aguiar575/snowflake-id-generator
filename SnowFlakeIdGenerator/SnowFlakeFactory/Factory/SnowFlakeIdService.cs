@@ -20,6 +20,8 @@ public class SnowFlakeIdService
         SnowFlakeModel snowFlakeModel,
         IDateTimeProvider dateTimeProvider) 
     {
+        snowFlakeModel.Validate();
+
         _dateTimeProvider = dateTimeProvider;
         _snowFlakeModel = snowFlakeModel;
 
@@ -34,7 +36,7 @@ public class SnowFlakeIdService
     public ulong CreateSnowflakeId()
     {
         var timestamp = GetTimestampInMilliseconds();
- 
+
         if (timestamp < _lastTimestamp)
             throw new InvalidOperationException(
                 $"Clock moved backwards. Refusing to generate ID for {_lastTimestamp - timestamp} milliseconds.");
