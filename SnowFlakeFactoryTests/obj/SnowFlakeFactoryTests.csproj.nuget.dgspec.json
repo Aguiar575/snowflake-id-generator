@@ -1,0 +1,142 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/arthur.aguiar/Developement/snowflake-id-generator/SnowFlakeFactoryTests/SnowFlakeFactoryTests.csproj": {}
+  },
+  "projects": {
+    "/Users/arthur.aguiar/Developement/snowflake-id-generator/SnowFlakeFactory/SnowFlakeFactory.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/arthur.aguiar/Developement/snowflake-id-generator/SnowFlakeFactory/SnowFlakeFactory.csproj",
+        "projectName": "SnowFlakeFactory",
+        "projectPath": "/Users/arthur.aguiar/Developement/snowflake-id-generator/SnowFlakeFactory/SnowFlakeFactory.csproj",
+        "packagesPath": "/Users/arthur.aguiar/.nuget/packages/",
+        "outputPath": "/Users/arthur.aguiar/Developement/snowflake-id-generator/SnowFlakeFactory/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/arthur.aguiar/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.301/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/arthur.aguiar/Developement/snowflake-id-generator/SnowFlakeFactoryTests/SnowFlakeFactoryTests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/arthur.aguiar/Developement/snowflake-id-generator/SnowFlakeFactoryTests/SnowFlakeFactoryTests.csproj",
+        "projectName": "SnowFlakeFactoryTests",
+        "projectPath": "/Users/arthur.aguiar/Developement/snowflake-id-generator/SnowFlakeFactoryTests/SnowFlakeFactoryTests.csproj",
+        "packagesPath": "/Users/arthur.aguiar/.nuget/packages/",
+        "outputPath": "/Users/arthur.aguiar/Developement/snowflake-id-generator/SnowFlakeFactoryTests/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/arthur.aguiar/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/arthur.aguiar/Developement/snowflake-id-generator/SnowFlakeFactory/SnowFlakeFactory.csproj": {
+                "projectPath": "/Users/arthur.aguiar/Developement/snowflake-id-generator/SnowFlakeFactory/SnowFlakeFactory.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.1.0, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.18.3, )"
+            },
+            "coverlet.collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.1, )"
+            },
+            "xunit.runner.visualstudio": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.4.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.301/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
